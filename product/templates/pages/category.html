@@ -1,0 +1,60 @@
+{% extends 'layouts/master.html' %}
+{% block content %}
+    <body>
+        <div class="product-view">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="row">
+                            {% for items in prod_category %}
+                            <div class="col-md-3">
+                                <div class="product-item">
+                                    <div class="product-title">
+                                        <a href="{%  url 'prod-detail' items.slug   %}">{{items.name}}</a>
+                                        <div class="ratting">
+                                            <i class="fa fa-star"></i>
+                                            <i class="fa fa-star"></i>
+                                            <i class="fa fa-star"></i>
+                                            <i class="fa fa-star"></i>
+                                            <i class="fa fa-star"></i>
+                                        </div>
+                                    </div>
+                                    <div class="product-image">
+                                        <a href="{%  url 'prod-detail' items.slug   %}">
+                                            {% if items.image %}
+                                            <img src="{{items.image.url}}" alt="Product Image">
+                                            {% endif %}
+                                        </a>
+                                        <div class="product-action">
+                                            <a href="#"><i class="fa fa-cart-plus"></i></a>
+                                            <a href="#"><i class="fa fa-heart"></i></a>
+                                            <a href="#"><i class="fa fa-search"></i></a>
+                                        </div>
+                                    </div>
+                                    <div class="product-price">
+                                        <h3><span>$</span>{{items.price}}</h3>
+                                        <a class="btn" href=""><i class="fa fa-shopping-cart"></i>Buy Now</a>
+                                    </div>
+                                </div>
+                            </div>
+                            {% endfor %}
+                        </div>
+                        
+                        
+        
+<!-- Brand Start -->
+<div class="brand">
+    <div class="container-fluid">
+        <div class="brand-slider">
+            <div class="brand-item"><img src="static/img/brand-1.png" alt=""></div>
+            <div class="brand-item"><img src="static/img/brand-2.png" alt=""></div>
+            <div class="brand-item"><img src="static/img/brand-3.png" alt=""></div>
+            <div class="brand-item"><img src="static/img/brand-4.png" alt=""></div>
+            <div class="brand-item"><img src="static/img/brand-5.png" alt=""></div>
+            <div class="brand-item"><img src="static/img/brand-6.png" alt=""></div>
+        </div>
+    </div>
+</div>
+<!-- Brand End --> 
+        
+{% endblock %}

@@ -1,0 +1,146 @@
+{% extends 'layouts/master.html' %}
+{% block content %}
+    <body>
+        
+        <!-- Product List Start -->
+        <div class="product-view">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-lg-8">
+                        <div class="row">
+                            {% for items in product %}
+                            <div class="col-md-4">
+                                <div class="product-item">
+                                    <div class="product-title">
+                                        <a href="{%  url 'prod-detail' items.slug   %}">{{items.name}}</a>
+                                        <div class="ratting">
+                                            <i class="fa fa-star"></i>
+                                            <i class="fa fa-star"></i>
+                                            <i class="fa fa-star"></i>
+                                            <i class="fa fa-star"></i>
+                                            <i class="fa fa-star"></i>
+                                        </div>
+                                    </div>
+                                    <div class="product-image">
+                                        <a href="{%  url 'prod-detail' items.slug   %}">
+                                            {% if items.image %}
+                                            <img src="{{items.image.url}}" alt="Product Image">
+                                            {% endif %}
+                                        </a>
+                                        <div class="product-action">
+                                            <a href="#"><i class="fa fa-cart-plus"></i></a>
+                                            <a href="#"><i class="fa fa-heart"></i></a>
+                                            <a href="#"><i class="fa fa-search"></i></a>
+                                        </div>
+                                    </div>
+                                    <div class="product-price">
+                                        <h3><span>$</span>{{items.price}}</h3>
+                                        <a class="btn" href=""><i class="fa fa-shopping-cart"></i>Buy Now</a>
+                                    </div>
+                                </div>
+                            </div>
+                            {% endfor %}
+                        </div>
+                        
+                        <!-- Pagination Start -->
+                        <div class="col-md-12">
+                            <nav aria-label="Page navigation example">
+                                <ul class="pagination justify-content-center">
+                                    {% if product.has_previous  %}
+                                    <li class="page-item">
+                                        <a class="page-link" href="?page=1" tabindex="-1">First</a>
+                                    </li>
+                                    <li class="page-item">
+                                        <a class="page-link" href="?page={{product.previous_page_number}}" tabindex="-1">Previous</a>
+                                    </li>
+                                    
+                                    {% endif %}
+                                    <li class="page-item active"><a class="page-link" href="#">{{product.number}}</a></li>
+                                    {% if product.has_next  %}
+                                    <li class="page-item">
+                                        <a class="page-link" href="?page={{product.next_page_number}}">Next</a>
+                                    </li>
+                                    <li class="page-item">
+                                        <a class="page-link" href="?page={{product.paginator.num_pages}}">Last</a>
+                                    </li>
+                                    {% endif %}
+                                </ul>
+                            </nav>
+                        </div>
+                        <!-- Pagination Start -->
+                    </div>           
+                    
+                    <!-- Side Bar Start -->
+                    <div class="col-lg-4 sidebar">
+                        <div class="sidebar-widget category">
+                            <h2 class="title">Category</h2>
+                            <nav class="navbar bg-light">
+                                <ul class="navbar-nav">
+                                    <li class="nav-item">
+                                        {% for items in category %}
+                                        <a class="nav-link" href="{% url 'prod-category' items.slug %}">
+                                            {{items.category_name}}    
+                                        </a>
+                                        {% endfor %}
+                                    </li>
+                                </ul>
+                            </nav>
+                        </div>
+                        
+                        <div class="sidebar-widget widget-slider">
+                            <div class="sidebar-slider normal-slider">
+                                {% for items in featured %}
+                                <div class="product-item">
+                                    <div class="product-title">
+                                        <a href="{%  url 'prod-detail' items.slug   %}">{{items.name}}</a>
+                                        <div class="ratting">
+                                            <i class="fa fa-star"></i>
+                                            <i class="fa fa-star"></i>
+                                            <i class="fa fa-star"></i>
+                                            <i class="fa fa-star"></i>
+                                            <i class="fa fa-star"></i>
+                                        </div>
+                                    </div>
+                                    <div class="product-image">
+                                        {% if items.image %}
+                                        <a href="{%  url 'prod-detail' items.slug   %}">
+                                            <img src="{{items.image.url}}" alt="Product Image">
+                                        </a>
+                                        {% endif %}
+                                        <div class="product-action">
+                                            <a href="#"><i class="fa fa-cart-plus"></i></a>
+                                            <a href="#"><i class="fa fa-heart"></i></a>
+                                            <a href="#"><i class="fa fa-search"></i></a>
+                                        </div>
+                                    </div>
+                                    <div class="product-price">
+                                        <h3><span>$</span>{{items.price}}</h3>
+                                        <a class="btn" href=""><i class="fa fa-shopping-cart"></i>Buy Now</a>
+                                    </div>
+                                </div>
+                                {% endfor %}
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Side Bar End -->
+                </div>
+            </div>
+        </div>
+        <!-- Product List End -->  
+        
+<!-- Brand Start -->
+<div class="brand">
+    <div class="container-fluid">
+        <div class="brand-slider">
+            <div class="brand-item"><img src="static/img/brand-1.png" alt=""></div>
+            <div class="brand-item"><img src="static/img/brand-2.png" alt=""></div>
+            <div class="brand-item"><img src="static/img/brand-3.png" alt=""></div>
+            <div class="brand-item"><img src="static/img/brand-4.png" alt=""></div>
+            <div class="brand-item"><img src="static/img/brand-5.png" alt=""></div>
+            <div class="brand-item"><img src="static/img/brand-6.png" alt=""></div>
+        </div>
+    </div>
+</div>
+<!-- Brand End --> 
+        
+{% endblock %}
